@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item{
+            background:url("images/0.jpg");
+            width:196px;
+            height:100px;
+            position:absolute;
+        }
+        .center{
+            position:absolute;
+            left:20%;
+            top:20%;
+        }
+
+    </style>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function(){
+            var gallary = $(".gallary");
+            for( var i=0;i<25;i++){
+                var y=parseInt( i / 5);
+                var x=parseInt( i % 5);
+                $("<div class='item'></div>")
+                        .css("background-position",function(){
+                            return x*-196+"px "+y*-100+"px";
+                })
+                        .css("left",function(){
+                           return x*196+"px";
+                        })
+
+                        .css("top",function(){
+                          return y*100+"px";
+                        })
+                        .appendTo(gallary)
+            }
+            var items=gallary.find(".item");
+            items.click(function(){
+
+                items.each(function(index){
+                    var r =Math.random()*2700+300;
+                    $(this).delay(r).animate({"opacity":"0.5"},800)
+                })
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="gallary center">
+
+    </div>
+</body>
+</html>
